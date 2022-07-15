@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect,useCallback } from 'react';
 import { TextField, Typography, Grid, Button, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 
 import { ExpenseTrackerContext } from '../../../context/context';
@@ -21,10 +21,11 @@ const Form = () => {
   const {addTransaction} = useContext(ExpenseTrackerContext)
   const [formData, setFormData] = useState(initialState);
   const { segment } = useSpeechContext();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
 
-  const createTransaction = () => {
+
+  const createTransaction = useCallback(() => {
     if (Number.isNaN(Number(formData.amount)) || !formData.date.includes('-')) return;
 
     if (incomeCategories.map((iC) => iC.type).includes(formData.category)) {
@@ -36,11 +37,11 @@ const Form = () => {
     setOpen(true);
     addTransaction({ ...formData, amount: Number(formData.amount), id: uuidv4() });
     setFormData(initialState);
-  };
+  }, [formData,addTransaction]);
 
 
   useEffect(() => {
-    // eslint-disable-next-line
+
     if (segment) {
       if (segment.intent.intent === 'add_expense') {
         setFormData({ ...formData, type: 'Expense' });
@@ -78,7 +79,9 @@ const Form = () => {
         createTransaction();
       }
     }
-  }, [segment]);
+    // eslint-disable-next-line
+    
+  }, [segment,formData,createTransaction]);
   
 
 
