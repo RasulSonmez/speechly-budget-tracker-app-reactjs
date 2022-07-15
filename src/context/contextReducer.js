@@ -1,5 +1,3 @@
-import React from "react";
-
 const contextReducer = (state, action) => {
   let transactions;
 
@@ -9,7 +7,7 @@ const contextReducer = (state, action) => {
         (transaction) => transaction.id !== action.payload
       );
 
-      localStorage.setItem("transaction", JSON.stringify(transactions));
+      localStorage.setItem("transactions", JSON.stringify(transactions));
 
       return transactions;
 
