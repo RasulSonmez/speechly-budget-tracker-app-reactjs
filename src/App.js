@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 import {
   PushToTalkButton,
@@ -38,14 +38,24 @@ function App() {
         <PushToTalkButtonContainer>
           <PushToTalkButton />
         </PushToTalkButtonContainer>
+        <Typography
+          component="h2"
+          style={{ color: "#ffff", marginTop: "5rem" }}
+        >
+          Created by
+          <a
+            className={classes.link}
+            style={{
+              color: "#9e9e9e",
+              textDecoration: "none",
+            }}
+            href="https://github.com/RasulSonmez"
+          >
+            {" "}
+            Rasul Sonmez
+          </a>{" "}
+        </Typography>
       </Grid>
-      <Typography variant="body1" component="h2">
-        Created by
-        <a className={classes.link} href="https://github.com/RasulSonmez">
-          {" "}
-          Rasul Sonmez
-        </a>{" "}
-      </Typography>
     </div>
   );
 }
