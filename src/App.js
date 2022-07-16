@@ -39,6 +39,13 @@ function App() {
           <PushToTalkButton />
         </PushToTalkButtonContainer>
       </Grid>
+      <Typography variant="body1" component="h2">
+        Created by
+        <a className={classes.link} href="https://github.com/RasulSonmez">
+          {" "}
+          Rasul Sonmez
+        </a>{" "}
+      </Typography>
     </div>
   );
 }
